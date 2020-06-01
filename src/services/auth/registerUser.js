@@ -1,28 +1,26 @@
-const bcryptjs = require('bcryptjs');
-const util = require('util');
-bcryptjs.hash = util.promisify(bcryptjs.hash);
+const encryptPass = require('../../config/encryptPass');
+
 const User = require('../../models/User');
 
 module.exports = registerUser = async (data, cb) => {
   let validation = [];
-  if (!data.email) {
+
+  !data.email &&
     validation.push({
       error: 'Email tidak boleh kosong!',
     });
-  }
-  if (!data.password) {
+  !data.password &&
     validation.push({
       error: 'Password tidak boleh kosong!',
     });
-  }
-  if (!data.nama) {
+  !data.nama &&
     validation.push({
       error: 'Nama tidak boleh kosong',
     });
-  }
-  validation.length > 0 && cb({ status: 500, errors: validation });
-  const encPass = await bcryptjs.hash(data.password, 10);
-  User.create({ email: data.email, password: encPass, name: data.nama })
+
+  validation.length > 0 && cb({ success: 0, status: 500, validation });
+  const encPass = await encryptPass(data.password, 10);
+  await User.create({ email: data.email, password: encPass, name: data.nama })
     .then((data) => {
       cb(null, {
         success: 1,

@@ -14,7 +14,12 @@ app.use(bp.urlencoded({ extended: false }));
 
 mongoose.connect(
   process.env.MONGO_URL,
-  { useNewUrlParser: true, useUnifiedTopology: true },
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: true,
+  },
   (err) => {
     err ? console.log(err) : console.log('Connected to database');
   }

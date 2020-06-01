@@ -11,6 +11,15 @@ const controller = {
       err ? res.json(err) : res.json(result);
     });
   },
+  loginUser: async (req, res) => {
+    let data = {
+      email: req.body.email,
+      password: req.body.password,
+    };
+    await services.loginUser(data, (err, result) => {
+      err ? res.json(err) : res.json(result);
+    });
+  },
 };
 
 module.exports = controller;

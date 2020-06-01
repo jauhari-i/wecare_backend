@@ -4,6 +4,6 @@ const app = express();
 const controller = require('../controllers/authController');
 
 app.post('/register/user', controller.registerUser);
-app.get('/testing', (req, res) => res.send('Hello'));
+app.post('/login/user', controller.loginUser);
 
 module.exports = app;
