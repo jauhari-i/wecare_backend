@@ -41,7 +41,7 @@ module.exports = loginUser = async (data, cb) => {
       !isMatch && cb({ success: 0, status: 500, msg: 'Password tidak cocok' });
       User.findOneAndUpdate(
         { email: user.email },
-        { lastLogin: Date.now },
+        { lastLogin: Date.now() },
         (err, last) => {
           err && cb({ success: 0, status: 500, err });
           cb(null, {
