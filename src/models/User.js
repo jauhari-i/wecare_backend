@@ -22,6 +22,7 @@ const userSchema = new mongoose.Schema({
   noTlp: {
     type: String,
     required: false,
+    default: '',
   },
   createdAt: {
     type: Date,
@@ -34,6 +35,10 @@ const userSchema = new mongoose.Schema({
   verified: {
     type: Number,
     required: true,
+    default: 0,
+  },
+  role: {
+    type: Number,
     default: 0,
   },
 });

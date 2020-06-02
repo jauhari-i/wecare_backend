@@ -20,6 +20,11 @@ const controller = {
       err ? res.json(err) : res.json(result);
     });
   },
+  verifyUser: async (req, res) => {
+    await services.verifiUser(req.params.kode, (err, result) => {
+      err ? res.json(err) : res.json(result);
+    });
+  },
 };
 
 module.exports = controller;

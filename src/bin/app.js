@@ -19,7 +19,7 @@ mongoose.connect(
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
-    useFindAndModify: true,
+    useFindAndModify: false,
   },
   (err) => {
     err ? console.log(err) : console.log('Connected to database');
@@ -30,6 +30,7 @@ const api = require('../apis/index');
 app.get('/', (req, res) =>
   res.sendFile(path.join(__dirname, '../', 'index.html'))
 );
+
 app.use('/api/auth', api.authApi);
 
 app.listen(process.env.PORT || port, () =>
