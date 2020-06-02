@@ -31,6 +31,11 @@ const userSchema = new mongoose.Schema({
     type: Date,
     required: false,
   },
+  verified: {
+    type: Number,
+    required: true,
+    default: 0,
+  },
 });
 
 const User = mongoose.model('user', userSchema);

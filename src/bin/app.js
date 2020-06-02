@@ -25,6 +25,8 @@ mongoose.connect(
   }
 );
 
+console.log(process.env);
+
 const api = require('../apis/index');
 
 app.use('/api/auth', api.authApi);

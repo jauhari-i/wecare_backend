@@ -20,7 +20,15 @@ module.exports = loginUser = async (data, cb) => {
   validation.length > 0 && cb({ success: 0, status: 500, validation });
   await User.findOne({ email: data.email })
     .then(async (user) => {
-      !user && cb({ success: 0, status: 500, msg: 'Email tidak ditemukan' });
+      if (!user)
+        return cb({ success: 0, status: 500, msg: 'Email tidak ditemukan' });
+      if (!user.verified || user.verified === 0)
+        return cb({
+          success: 0,
+          status: 500,
+          msg: 'Email belum terverifikasi',
+        });
+
       const isMatch = await decryptPass(data.password, user.password);
       const token = jwt.sign(
         {
