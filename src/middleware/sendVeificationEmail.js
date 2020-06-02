@@ -18,7 +18,7 @@ module.exports = sendVerificationEmail = async (email, kode, cb) => {
     };
     const htmlToSend = template(data);
     const mailOptions = {
-      from: `We Care <no-reply@wecare.com>`,
+      from: `"We Care" <no-reply@wecare.com>`,
       to: email,
       subject: 'Email Verification',
       html: htmlToSend,
