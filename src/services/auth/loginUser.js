@@ -49,7 +49,7 @@ module.exports = loginUser = async (data, cb) => {
             status: 200,
             token: token,
             msg: 'Login berhasil',
-            lastLogin: last.lastLogin,
+            lastLogin: Date.now(),
           });
         }
       );
