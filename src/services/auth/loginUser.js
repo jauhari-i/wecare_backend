@@ -38,14 +38,21 @@ module.exports = loginUser = async (data, cb) => {
         secret,
         { expiresIn: '24h' }
       );
-      isMatch
-        ? cb(null, {
+      !isMatch && cb({ success: 0, status: 500, msg: 'Password tidak cocok' });
+      User.findOneAndUpdate(
+        { email: user.email },
+        { lastLogin: Date.now },
+        (err, last) => {
+          err && cb({ success: 0, status: 500, err });
+          cb(null, {
             success: 1,
             status: 200,
             token: token,
             msg: 'Login berhasil',
-          })
-        : cb({ success: 0, status: 500, msg: 'Password tidak cocok' });
+            lastLogin: last.lastLogin,
+          });
+        }
+      );
     })
     .catch((err) => cb({ success: 0, status: 500, err }));
 };
