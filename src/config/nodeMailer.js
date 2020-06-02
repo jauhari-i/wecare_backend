@@ -5,7 +5,6 @@ let transporter = nodemailer.createTransport({
   port: 465,
   secure: true, // use SSL
   auth: {
-    type: 'OAuth2',
     user: process.env.GMAIL, // generated ethereal user
     pass: process.env.GMAIL_PASS, // generated ethereal password
   },
