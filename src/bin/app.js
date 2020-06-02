@@ -32,4 +32,6 @@ app.get('/', (req, res) =>
 );
 app.use('/api/auth', api.authApi);
 
-app.listen(port, () => console.log(`WeCare app listening on port ${port}!`));
+app.listen(process.env.PORT || port, () =>
+  console.log(`WeCare app listening on port ${port}!`)
+);
