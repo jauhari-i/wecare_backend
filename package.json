@@ -5,8 +5,8 @@
   "main": "./src/bin/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon ./src/bin/app.js",
-    "start": "node ./src/bin/app.js"
+    "start": "node ./src/bin/app.js",
+    "start:dev": "nodemon ./src/bin/app.js"
   },
   "keywords": [],
   "author": "",
@@ -27,5 +27,8 @@
     "path": "^0.12.7",
     "redis": "^3.0.2",
     "socket.io": "^2.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
   }
 }
